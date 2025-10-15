@@ -22,14 +22,10 @@ DiscordLib:Notification("Notification", "BlackHole Enabled", "Okay!")
 end)
 
 FE:Button("Parts Orbit", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/chesslovers69/Super-ring-parts-v6/refs/heads/main/Bylukaslol"))()
+loadstring(game:HttpGet('https://pastebin.com/raw/wBsi24w3'))()
 DiscordLib:Notification("Notification", "Parts Orbit Enabled", "Okay!")
 end)
 
-FE:Button("Dance", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/84V2s6Fv"))()
-    DiscordLib:Notification("Notification", "Epic Dance Enabled", "Okay!")
-end)
 
 FE:Button("Fly", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
