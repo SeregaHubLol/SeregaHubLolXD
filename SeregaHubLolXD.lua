@@ -21,6 +21,11 @@ loadstring(game:HttpGet('https://pastebin.com/raw/wBsi24w3'))()
 DiscordLib:Notification("Notification", "BlackHole Enabled", "Okay!")
 end)
 
+FE:Button("Parts Orbit", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/chesslovers69/Super-ring-parts-v6/refs/heads/main/Bylukaslol"))()
+DiscordLib:Notification("Notification", "Parts Orbit Enabled", "Okay!")
+end)
+
 FE:Button("Dance", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/84V2s6Fv"))()
     DiscordLib:Notification("Notification", "Epic Dance Enabled", "Okay!")
@@ -83,3 +88,4 @@ Local:Button("C00lExecutor", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/rtlsmonk/c00lgui-made-by-rtls_a1-on-discord/refs/heads/main/have-fun"))()
     DiscordLib:Notification("Notification", "C00lExecutor enabled ", "Okay!")
 end)
+
