@@ -40,7 +40,8 @@ end)
 
 FE:Button("John Doe 1", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/johndoe"))()
-DiscordLib:Notification("Notification", "Legends Never Die.", "Okay!")
+        wait(0.1)
+    DiscordLib:Notification("Notification", "Fling Menu Enabled", "Okay!")
 end)
 
 FE:Button("John Doe 2", function()
