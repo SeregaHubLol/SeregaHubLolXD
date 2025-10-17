@@ -33,8 +33,7 @@ FE:Button("Fly", function()
 end)
 
 
-OtherHacks:Button("Noclip", function()
-    if game.CoreGui:FindFirstChild("NoclipGui") then return end
+ if game.CoreGui:FindFirstChild("NoclipGui") then return end
 
     local Players = game:GetService("Players")
     local UIS = game:GetService("UserInputService")
@@ -113,17 +112,6 @@ OtherHacks:Button("Noclip", function()
 
 end)
 
-OtherHacks:Button("Fly", function()
-  
-
-    lighting.Brightness = 2
-    lighting.ClockTime = 12
-    lighting.GlobalShadows = false
-    lighting.Ambient = Color3.fromRGB(255, 255, 255)
-    lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)
-
-    DiscordLib:Notification("Notification", "Fly Menu Enabled", "Okay!")
-end)
 
 
 FE:Button("Fling", function()
