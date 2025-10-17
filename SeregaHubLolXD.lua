@@ -81,7 +81,7 @@ end)
 
 
 Local:Button("C00lExecutor", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/rtlsmonk/c00lgui-made-by-rtls_a1-on-discord/refs/heads/main/have-fun"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GOJO07775/C00lkiddK1ng-GUI/bb47ccdd3540216eae52b96569bf17671f0ea41d/C00lkiddK1ng%20GUI", true))()
     DiscordLib:Notification("Notification", "C00lExecutor enabled ", "Okay!")
 end)
 
