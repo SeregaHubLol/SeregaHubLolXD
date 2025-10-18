@@ -39,7 +39,7 @@ end)
 
 
 FE:Button("John Doe 1", function()
-loadstring(game:HttpGet("https://rawscripts.net/raw/Client-Replication-John-doe-up-by-gojohdkaisenkt-34198"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/johndoe"))()
 DiscordLib:Notification("Notification", "Legends Never Die.", "Okay!")
 end)
 
