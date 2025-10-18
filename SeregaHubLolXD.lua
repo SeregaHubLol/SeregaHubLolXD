@@ -22,7 +22,7 @@ DiscordLib:Notification("Notification", "BlackHole Enabled", "Okay!")
 end)
 
 FE:Button("Parts Orbit", function()
-loadstring(game:HttpGet('https://pastebin.com/raw/wBsi24w3'))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/chesslovers69/Super-ring-parts-v6/refs/heads/main/Bylukaslol"))()
 DiscordLib:Notification("Notification", "Parts Orbit Enabled", "Okay!")
 end)
 
@@ -32,13 +32,6 @@ FE:Button("Fly", function()
     DiscordLib:Notification("Notification", "Fly Menu Enabled", "Okay!")
 end)
 
-
-FE:Button("Noclip", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/yayRJySC"))()
-    DiscordLib:Notification("Notification", "Noclip Menu Enabled", "Okay!")
-end)
-
-
 FE:Button("Fling", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/Z3F1sTEN"))()
     DiscordLib:Notification("Notification", "Fling Menu Enabled", "Okay!")
@@ -46,9 +39,8 @@ end)
 
 
 FE:Button("John Doe 1", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/johndoe"))()
-        wait(0.1)
-    DiscordLib:Notification("Notification", "Fling Menu Enabled", "Okay!")
+loadstring(game:HttpGet("https://rawscripts.net/raw/Client-Replication-John-doe-up-by-gojohdkaisenkt-34198"))()
+DiscordLib:Notification("Notification", "Legends Never Die.", "Okay!")
 end)
 
 FE:Button("John Doe 2", function()
@@ -89,7 +81,7 @@ end)
 
 
 Local:Button("C00lExecutor", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/GOJO07775/C00lkiddK1ng-GUI/bb47ccdd3540216eae52b96569bf17671f0ea41d/C00lkiddK1ng%20GUI", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/rtlsmonk/c00lgui-made-by-rtls_a1-on-discord/refs/heads/main/have-fun"))()
     DiscordLib:Notification("Notification", "C00lExecutor enabled ", "Okay!")
 end)
 
