@@ -6,6 +6,35 @@ local serv = win:Server("Preview", "")
 
 local FE = serv:Channel("FE")
 
+FE:Button("Esp", function()
+    task.spawn(function()
+        local Players = game:GetService("Players")
+        local RunService = game:GetService("RunService")
+        local LocalPlayer = Players.LocalPlayer
+
+        RunService.RenderStepped:Connect(function()
+            for _, player in ipairs(Players:GetPlayers()) do
+                if player ~= LocalPlayer and player.Character then
+                    if not player.Character:FindFirstChild("ESP_Highlight") then
+                        local highlight = Instance.new("Highlight")
+                        highlight.Name = "ESP_Highlight"
+                        highlight.Adornee = player.Character
+                        highlight.FillColor = Color3.new(1, 1, 1)
+                        highlight.FillTransparency = 0.5
+                        highlight.OutlineColor = Color3.new(1, 1, 1)
+                        highlight.OutlineTransparency = 0
+                        highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                        highlight.Parent = player.Character
+                    end
+                end
+            end
+        end)
+    end)
+
+    DiscordLib:Notification("Notification", "Esp_Players Enabled", "Okay!")
+end)
+
+
 FE:Button("R6", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/LeathalMurd/Roblox-R15-To-R6/refs/heads/main/Converter.lua"))()
 DiscordLib:Notification("Notification", "R6", "Okay!")
