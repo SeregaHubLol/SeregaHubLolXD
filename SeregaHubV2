@@ -1,0 +1,603 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "SeregaHubLolAdvanced" .. Fluent.Version,
+    SubTitle = "script by seregababin",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Amethyst",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "" }),
+    Forsakenation = Window:AddTab({ Title = "Forsakenation", Icon = "" }),
+    Genesis_FE = Window:AddTab({ Title = "Genesis FE", Icon = "" }),
+    OtherGameScripts = Window:AddTab({ Title = "OtherGameScripts", Icon = "" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+  
+
+local Options = Fluent.Options
+
+    Fluent:Notify({
+        Title = "Notification",
+        Content = "Thanks That Use My Script!",
+        SubContent = "Thanks!", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+    })
+
+
+        Tabs.Main:AddButton({
+        Title = "Fly",
+        Description = "Gives You Fly Menu",
+        Callback = function()
+            Window:Dialog({
+                Title = "Activate Fly Menu?",
+                Content = "Fly Menu",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                         loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+Tabs.Main:AddButton({
+    Title = "Noclip",
+    Description = "Gives You Noclip Menu",
+    Callback = function()
+        Window:Dialog({
+            Title = "Activate Noclip Menu?",
+            Content = "Noclip Menu",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        if game.CoreGui:FindFirstChild("NoclipGui") then return end
+
+                        local Players = game:GetService("Players")
+                        local UIS = game:GetService("UserInputService")
+                        local RunService = game:GetService("RunService")
+
+                        local player = Players.LocalPlayer
+                        local character = player.Character or player.CharacterAdded:Wait()
+                        local noclip = false
+                        local noclipKey = Enum.KeyCode.V
+
+                        local screenGui = Instance.new("ScreenGui")
+                        screenGui.Name = "NoclipGui"
+                        screenGui.ResetOnSpawn = false
+                        screenGui.Parent = game.CoreGui
+
+                        local frame = Instance.new("Frame")
+                        frame.Size = UDim2.new(0, 200, 0, 100)
+                        frame.Position = UDim2.new(0, 10, 1, -110)
+                        frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                        frame.BorderSizePixel = 0
+                        frame.Active = true
+                        frame.Draggable = true
+                        frame.Parent = screenGui
+
+                        local noclipButton = Instance.new("TextButton")
+                        noclipButton.Size = UDim2.new(0, 180, 0, 40)
+                        noclipButton.Position = UDim2.new(0, 10, 0, 10)
+                        noclipButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+                        noclipButton.TextColor3 = Color3.new(1, 1, 1)
+                        noclipButton.Font = Enum.Font.SourceSans
+                        noclipButton.TextSize = 20
+                        noclipButton.Text = "Noclip: OFF"
+                        noclipButton.Parent = frame
+
+                        local bindText = Instance.new("TextLabel")
+                        bindText.Size = UDim2.new(0, 180, 0, 20)
+                        bindText.Position = UDim2.new(0, 10, 0, 60)
+                        bindText.BackgroundTransparency = 1
+                        bindText.TextColor3 = Color3.new(1, 1, 1)
+                        bindText.Font = Enum.Font.SourceSans
+                        bindText.TextSize = 16
+                        bindText.Text = "Bind: " .. tostring(noclipKey)
+                        bindText.Parent = frame
+
+                        local function toggleNoclip()
+                            noclip = not noclip
+                            noclipButton.Text = "Noclip: " .. (noclip and "ON" or "OFF")
+                            noclipButton.BackgroundColor3 = noclip and Color3.fromRGB(0, 170, 0) or Color3.fromRGB(60, 60, 60)
+                        end
+
+                        noclipButton.MouseButton1Click:Connect(toggleNoclip)
+
+                        UIS.InputBegan:Connect(function(input, gameProcessed)
+                            if input.KeyCode == noclipKey and not gameProcessed then
+                                toggleNoclip()
+                            end
+                        end)
+
+                        RunService.Stepped:Connect(function()
+                            if character and character:IsDescendantOf(workspace) then
+                                for _, part in pairs(character:GetDescendants()) do
+                                    if part:IsA("BasePart") then
+                                        part.CanCollide = not noclip
+                                    end
+                                end
+                            end
+                        end)
+
+                        player.CharacterAdded:Connect(function(newChar)
+                            character = newChar
+                        end)
+
+                        Fluent:Notify({
+                            Title = "Noclip Activated",
+                            Content = "Press V or use GUI to toggle",
+                            Duration = 4
+                        })
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function()
+                        print("Cancelled.")
+                    end
+                }
+            }
+        })
+    end
+})
+
+
+   Tabs.Main:AddButton({
+        Title = "ESP",
+        Description = "Activate ESP ",
+        Callback = function()
+            Window:Dialog({
+                Title = "Lag Warning",
+                Content = "Lag Warnign!",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                          loadstring(game:HttpGet("https://pastebin.com/raw/V5n9KFMi"))()
+                           loadstring(game:HttpGet("https://pastebin.com/raw/tVyFVKcx"))()
+                           wait(0.1)
+                           loadstring(game:HttpGet("https://pastebin.com/raw/gSLVHQMQ"))()
+                           ShowHealthBar = false,
+                           print("Confirmed the dialog.")
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+
+        Tabs.Main:AddButton({
+        Title = "Fling",
+        Description = "Gives You Fling Menu",
+        Callback = function()
+            Window:Dialog({
+                Title = "Activate Fling Menu?",
+                Content = "Fling Menu",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                         loadstring(game:HttpGet("https://gist.githubusercontent.com/torikooo/368f299af4e4c4659ae34b5c5efc1a16/raw/8f7384de76cfb3e843995970b1d7ebff994c8a87/FE%2520Fling%2520TrollGUI"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+            Tabs.Main:AddButton({
+        Title = "Flip Tool",
+        Description = "Gives You Fling Menu",
+        Callback = function()
+            Window:Dialog({
+                Title = "Activate Flip Tools Menu?",
+                Content = "Back And Front flip",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                         loadstring(game:HttpGet("https://raw.githubusercontent.com/Boxten-Keyes/music/refs/heads/main/music%23%5Bscripts%5D/music%23%5Bmiscellaneous%5D/music%23%5Bfe%20flip%5D.lua"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+       Tabs.Forsakenation:AddButton({
+        Title = "Forsakenation",
+        Description = "",
+        Callback = function()
+            Window:Dialog({
+                Title = "Activate Forsakenation",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b30aae8f2ef544de8c9d1f8b849e6bdb.lua"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+
+     Tabs.Genesis_FE:AddButton({
+        Title = "Ak-47",
+        Description = "Genesis_FE",
+        Callback = function()
+            Window:Dialog({
+                Title = "Need Hats",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                         loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+         Tabs.Genesis_FE:AddButton({
+        Title = "Neputan",
+        Description = "Genesis_FE",
+        Callback = function()
+            Window:Dialog({
+                Title = "Need Hats",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Neptunian%20V"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+      Tabs.Genesis_FE:AddButton({
+        Title = "Sin Dragon",
+        Description = "Genesis_FE",
+        Callback = function()
+            Window:Dialog({
+                Title = "Need Hats",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                         loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sin%20Dragon"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+      Tabs.Genesis_FE:AddButton({
+        Title = "Gale Fighter",
+        Description = "Genesis_FE",
+        Callback = function()
+            Window:Dialog({
+                Title = "Need Hats",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                         loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Gale%20Fighter"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+        Tabs.Genesis_FE:AddButton({
+        Title = "Minigun",
+        Description = "Genesis_FE",
+        Callback = function()
+            Window:Dialog({
+                Title = "Need Hats",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Minigun"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+        Tabs.Genesis_FE:AddButton({
+        Title = "Minigun",
+        Description = "Genesis_FE",
+        Callback = function()
+            Window:Dialog({
+                Title = "Need Hats",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Minigun"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+    Tabs.Genesis_FE:AddButton({
+        Title = "Puppet Master",
+        Description = "Genesis_FE",
+        Callback = function()
+            Window:Dialog({
+                Title = "Need Hats",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Puppet%20Master"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+         Tabs.Genesis_FE:AddButton({
+        Title = "Goner",
+        Description = "Genesis_FE",
+        Callback = function()
+            Window:Dialog({
+                Title = "Need Hats",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Goner"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+        Tabs.Genesis_FE:AddButton({
+        Title = "Good And Bad Cop",
+        Description = "Genesis_FE",
+        Callback = function()
+            Window:Dialog({
+                Title = "Need Hats",
+                Content = "Script_Need_Hats",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Good%20Cop%20Bad%20Cop"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+         Tabs.OtherGameScripts:AddButton({
+        Title = "MSpaint",
+        Description = "MSpaint Script",
+        Callback = function()
+            Window:Dialog({
+                Title = "Activate MSpaint Script",
+                Content = "Mspaint Hub",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/002c19202c9946e6047b0c6e0ad51f84.lua"))() 
+
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+         Tabs.OtherGameScripts:AddButton({
+        Title = "Escape Cheese",
+        Description = "Escape Cheese Script",
+        Callback = function()
+            Window:Dialog({
+                Title = "Activate Escape Cheese Script",
+                Content = "Escape Cheese",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/SeregaHubLol/Escape-Cheese/refs/heads/main/(New%20Keyless)%20Escape%20Cheese%20script%20roblox"))()
+
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+    
+         Tabs.OtherGameScripts:AddButton({
+        Title = "99 Nigths",
+        Description = "99 Nigths Script",
+        Callback = function()
+            Window:Dialog({
+                Title = "Activate 99 Nigths Script",
+                Content = "",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                         loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest2.lua",true))()
+
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+Window:SelectTab(1)
+
+Fluent:Notify({
+    Title = "Fluent",
+    Content = "The script has been loaded.",
+    Duration = 8
+})
+
+SaveManager:LoadAutoloadConfig()
