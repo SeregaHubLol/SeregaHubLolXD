@@ -6,35 +6,6 @@ local serv = win:Server("Preview", "")
 
 local FE = serv:Channel("FE")
 
-FE:Button("Esp", function()
-    task.spawn(function()
-        local Players = game:GetService("Players")
-        local RunService = game:GetService("RunService")
-        local LocalPlayer = Players.LocalPlayer
-
-        RunService.RenderStepped:Connect(function()
-            for _, player in ipairs(Players:GetPlayers()) do
-                if player ~= LocalPlayer and player.Character then
-                    if not player.Character:FindFirstChild("ESP_Highlight") then
-                        local highlight = Instance.new("Highlight")
-                        highlight.Name = "ESP_Highlight"
-                        highlight.Adornee = player.Character
-                        highlight.FillColor = Color3.new(1, 1, 1)
-                        highlight.FillTransparency = 0.5
-                        highlight.OutlineColor = Color3.new(1, 1, 1)
-                        highlight.OutlineTransparency = 0
-                        highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                        highlight.Parent = player.Character
-                    end
-                end
-            end
-        end)
-    end)
-
-    DiscordLib:Notification("Notification", "Esp_Players Enabled", "Okay!")
-end)
-
-
 FE:Button("R6", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/LeathalMurd/Roblox-R15-To-R6/refs/heads/main/Converter.lua"))()
 DiscordLib:Notification("Notification", "R6", "Okay!")
@@ -55,6 +26,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/chesslovers69/Super-r
 DiscordLib:Notification("Notification", "Parts Orbit Enabled", "Okay!")
 end)
 
+FE:Button("Parts Orbit", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/chesslovers69/Super-ring-parts-v6/refs/heads/main/Bylukaslol"))()
+DiscordLib:Notification("Notification", "Parts Orbit Enabled", "Okay!")
+end)
 
 FE:Button("Fly", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
@@ -68,7 +43,7 @@ end)
 
 
 FE:Button("John Doe 1", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/johndoe"))()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Client-Replication-John-doe-up-by-gojohdkaisenkt-34198"))()
 DiscordLib:Notification("Notification", "Legends Never Die.", "Okay!")
 end)
 
@@ -97,6 +72,10 @@ loadstring(game:HttpGet("https://soluna-script.vercel.app/99-Nights-in-the-Fores
 DiscordLib:Notification("Notification", "Key is EndOverdosing ", "Okay!")
 end)
 
+Local:Button("VisualStudio", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/VSCode/refs/heads/main/VSCode.lua"))()
+DiscordLib:Notification("Notification", "Good Luck! To Make A Script", "Okay!")
+end)
 
 Local:Button("Rivals", function()
 loadstring(game:HttpGet("https://soluna-script.vercel.app/main.lua",true))()
